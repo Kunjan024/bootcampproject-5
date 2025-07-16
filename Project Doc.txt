@@ -1,0 +1,12 @@
+Real-time Data Processing Pipeline
+Services Used:
+
+Cloud Pub/Sub, Dataflow, BigQuery, Cloud Storage
+Objective:
+Ingest and analyze streaming data in real-time.
+Tasks:
+
+Simulate streaming data with Pub/Sub
+Process data using Dataflow (Apache Beam)
+Store results in BigQuery
+Archive raw data in Cloud Storage

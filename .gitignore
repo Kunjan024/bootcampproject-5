@@ -1,0 +1,4 @@
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+Scripts/bootcampproject-5-465900-0e90703b32ea.json

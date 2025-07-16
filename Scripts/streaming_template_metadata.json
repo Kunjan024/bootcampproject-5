@@ -1,0 +1,8 @@
+{
+  "name": "streaming-dataflow-job",
+  "description": "Streaming pipeline from Pub/Sub to BigQuery",
+  "parameters": [],
+  "sdk_info": {
+    "language": "PYTHON"
+  }
+}
