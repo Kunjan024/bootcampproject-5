@@ -2,27 +2,32 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'build-image'
-    args:
-      - 'build'
-      - '-t'
-      - 'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main'
-      - './App'
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    [
+      'build',
+      '-t',
+      'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main',
+      '-f',
+      'App/Dockerfile',
+      'App'
+    ]
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    id: 'deploy-to-cloud-run'
-    waitFor: ['build-image']
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud run deploy bootcampproject-5-service-main \
-        --image=gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main \
-        --region=us-central1 \
-        --platform=managed \
-        --allow-unauthenticated \
-        --port=8080
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main']
 
-images:
-  - 'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+    [
+      'run',
+      'deploy',
+      'bootcampproject-5-service-main',
+      '--image',
+      'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main',
+      '--region',
+      'us-central1',
+      '--platform',
+      'managed',
+      '--allow-unauthenticated'
+    ]
