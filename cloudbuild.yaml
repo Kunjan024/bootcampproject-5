@@ -13,15 +13,16 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: 'deploy-to-cloud-run'
     waitFor: ['build-image']
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'bootcampproject-5-service-main'
-      - '--image=gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main'
-      - '--region=us-central1'
-      - '--platform=managed'
-      - '--allow-unauthenticated'
-      - '--port=8080'
+      - '-c'
+      - |
+        gcloud run deploy bootcampproject-5-service-main \
+        --image=gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main \
+        --region=us-central1 \
+        --platform=managed \
+        --allow-unauthenticated \
+        --port=8080
 
 images:
   - 'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main'
