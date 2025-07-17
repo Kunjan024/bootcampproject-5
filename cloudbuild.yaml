@@ -20,3 +20,6 @@ steps:
 
 images:
   - 'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
