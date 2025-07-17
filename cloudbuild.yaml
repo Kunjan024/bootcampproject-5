@@ -1,5 +1,9 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
   - name: 'gcr.io/cloud-builders/docker'
+    id: 'build-image'
     args:
       - 'build'
       - '-t'
@@ -7,7 +11,8 @@ steps:
       - './App'
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
+    id: 'deploy-to-cloud-run'
+    waitFor: ['build-image']
     args:
       - 'run'
       - 'deploy'
@@ -20,6 +25,3 @@ steps:
 
 images:
   - 'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main'
-
-options:
-  logging: CLOUD_LOGGING_ONLY
