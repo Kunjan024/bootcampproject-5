@@ -9,7 +9,7 @@ steps:
       '-t',
       'gcr.io/bootcampproject-5-465900/bootcampproject-5-service-main',
       '-f',
-      'App/Dockerfile',
+      'App/dockerfile',
       'App'
     ]
 
